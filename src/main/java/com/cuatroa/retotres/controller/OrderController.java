@@ -57,7 +57,7 @@ public class OrderController {
         return orderService.delete(id);
     }
 
-    @GetMapping("/zone/{zone}")
+    @GetMapping("/zona/{zone}")
     public List<Order> findByZone(@PathVariable("zone") String zone) {
         return orderService.findByZone(zone);
     }
