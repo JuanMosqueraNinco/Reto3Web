@@ -14,25 +14,32 @@ import com.cuatroa.retotres.repository.crud.ChocolateCrudRepository;
 @Repository
 public class ChocolateRepository {
     @Autowired
-    private ChocolateCrudRepository accesoryCrudRepository;
+    private ChocolateCrudRepository chocolateCrudRepository;
 
     public List<Chocolate> getAll() {
-        return accesoryCrudRepository.findAll();
+        return chocolateCrudRepository.findAll();
     }
 
     public Optional<Chocolate> getAccesory(String reference) {
-        return accesoryCrudRepository.findById(reference);
+        return chocolateCrudRepository.findById(reference);
     }
     
     public Chocolate create(Chocolate accesory) {
-        return accesoryCrudRepository.save(accesory);
+        return chocolateCrudRepository.save(accesory);
     }
 
     public void update(Chocolate accesory) {
-        accesoryCrudRepository.save(accesory);
+        chocolateCrudRepository.save(accesory);
     }
     
     public void delete(Chocolate accesory) {
-        accesoryCrudRepository.delete(accesory);
+        chocolateCrudRepository.delete(accesory);
+    }
+    public List<Chocolate> getByPrice(double price){
+        return chocolateCrudRepository.findByPrice(price);
+    }
+
+    public List<Chocolate> getByDescriptionContains(String description){
+        return chocolateCrudRepository.findByDescriptionContainingIgnoreCase(description);
     }
 }

@@ -32,7 +32,9 @@ public class DemoApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        
+        crudRepository.deleteAll();
+        userCrudRepository.deleteAll();
+        orderCrudRepository.deleteAll();
     //   SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
     //    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     //    crudRepository.deleteAll();

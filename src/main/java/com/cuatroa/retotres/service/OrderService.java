@@ -102,4 +102,12 @@ public class OrderService {
         return orderRepository.ordersSalesManByDate(dateStr,id);
     }
 
+    public List<Order> getBySalesManIdAndStatus(Integer id, String status){
+        return orderRepository.getBySalesManIdAndStatus(id, status);
+    }
+
+    public List<Order> getByRegisterDayAndSalesManId(String registerDay, Integer id){
+        return orderRepository.getByRegisterDayAndSalesManId(registerDay, id);
+    }
+
 }

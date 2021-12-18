@@ -2,6 +2,9 @@ package com.cuatroa.retotres.repository;
 
 import com.cuatroa.retotres.model.Order;
 import com.cuatroa.retotres.repository.crud.OrderCrudRepository;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -96,5 +99,19 @@ public List<Order> ordersSalesManByID(Integer id) {
  	        
  	        return orders;       
  	    }
+
+         
+    public List<Order> getBySalesManIdAndStatus(Integer id, String status){
+        return orderCrudRepository.findBySalesManIdAndStatus(id, status);
+    }
+
+    public List<Order> getByRegisterDayAndSalesManId(String registerDay, Integer id){
+        try {
+            return orderCrudRepository.findByRegisterDayAndSalesManId(new SimpleDateFormat("yyyy-MM-dd").parse(registerDay), id);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
  
 }

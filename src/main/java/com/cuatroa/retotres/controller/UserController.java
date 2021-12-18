@@ -2,6 +2,8 @@ package com.cuatroa.retotres.controller;
 
 import com.cuatroa.retotres.model.User;
 import com.cuatroa.retotres.service.UserService;
+
+import java.io.Console;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,27 +31,24 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    
-    /** 
+    /**
      * @return List<User>
      */
     @GetMapping("/all")
     public List<User> getAll() {
         return userService.getAll();
     }
-    
-    
-    /** 
+
+    /**
      * @param id
      * @return Optional<User>
      */
     @GetMapping("/{id}")
-    public Optional <User> getUser(@PathVariable("id") int id) {
+    public Optional<User> getUser(@PathVariable("id") int id) {
         return userService.getUser(id);
     }
 
-    
-    /** 
+    /**
      * @param user
      * @return User
      */
@@ -58,9 +57,8 @@ public class UserController {
     public User create(@RequestBody User user) {
         return userService.create(user);
     }
-    
-    
-    /** 
+
+    /**
      * @param user
      * @return User
      */
@@ -70,8 +68,7 @@ public class UserController {
         return userService.update(user);
     }
 
-    
-    /** 
+    /**
      * @param id
      * @return boolean
      */
@@ -80,25 +77,33 @@ public class UserController {
     public boolean delete(@PathVariable("id") int id) {
         return userService.delete(id);
     }
-    
-    
-    /** 
+
+    /**
      * @param email
      * @param password
      * @return User
      */
     @GetMapping("/{email}/{password}")
     public User authenticateUser(@PathVariable("email") String email, @PathVariable("password") String password) {
-        return userService.authenticateUser(email, password);
+        try {
+            return userService.authenticateUser(email, password);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
-    
-    
-    /** 
+
+    /**
      * @param email
      * @return boolean
      */
     @GetMapping("/emailexist/{email}")
     public boolean emailExists(@PathVariable("email") String email) {
         return userService.emailExists(email);
+
+    }
+    @GetMapping("/birthday/{month}")
+    public List<User> getByMonthBirthDay(@PathVariable("month") String month){
+        return userService.getByMonthBirthDay(month);
     }
 }

@@ -44,7 +44,7 @@ public class ChocolateService {
             Optional<Chocolate> accesoryDb = chocolateRepository.getAccesory(accesory.getReference());
             if (!accesoryDb.isEmpty()) {
                 // if (accesory.getBrand() != null) {
-                //     accesoryDb.get().setBrand(accesory.getBrand());
+                // accesoryDb.get().setBrand(accesory.getBrand());
                 // }
 
                 if (accesory.getCategory() != null) {
@@ -52,7 +52,7 @@ public class ChocolateService {
                 }
 
                 // if (accesory.getObjetivo() != null) {
-                //     accesoryDb.get().setObjetivo(accesory.getObjetivo());
+                // accesoryDb.get().setObjetivo(accesory.getObjetivo());
                 // }
 
                 if (accesory.getDescription() != null) {
@@ -85,4 +85,13 @@ public class ChocolateService {
         }).orElse(false);
         return aBoolean;
     }
+
+    public List<Chocolate> getByPrice(double price) {
+        return chocolateRepository.getByPrice(price);
+    }
+
+    public List<Chocolate> getByDescriptionContains(String description) {
+        return chocolateRepository.getByDescriptionContains(description);
+    }
+
 }

@@ -56,4 +56,14 @@ public class ChocolateController {
     public boolean delete(@PathVariable("reference") String reference) {
         return chocolateService.delete(reference);
     }
+
+    @GetMapping("/price/{price}")
+    public List<Chocolate> getByPrice(@PathVariable("price") double price){
+        return chocolateService.getByPrice(price);
+    }
+
+    @GetMapping("/description/{description}")
+    public List<Chocolate> getByDescriptionContains(@PathVariable("description") String description){
+        return chocolateService.getByDescriptionContains(description);
+    }
 }
